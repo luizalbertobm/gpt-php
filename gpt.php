@@ -5,7 +5,7 @@
 // sudo chmod +x /usr/local/bin/*
 
 // Nome da variável de ambiente
-$envVarName = 'OPENAI_API_KEY'; //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
+$envVarName = 'OPENAI_API_KEY';
 
 // Verifica se a variável de ambiente já está definida
 if (getenv($envVarName) === false) {
