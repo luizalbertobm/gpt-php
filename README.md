@@ -50,4 +50,4 @@ Se você encontrar problemas ou tiver sugestões de melhoria, sinta-se à vontad
 
 ### Licença
 
-Este projeto é livre para cópia e distribuição
+Este projeto é livre para cópia e distribuição sob a licença [MIT](LICENSE)
