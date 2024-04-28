@@ -4,13 +4,18 @@
 // sudo wget -O /usr/local/bin/script.sh https://gist.githubusercontent.com/luizalbertobm/f9331f25211732752e77e7065b72acca/raw/6d6769d2d8f6a0a1f4b447c0f45b0aff6780568c/
 // sudo chmod +x /usr/local/bin/*
 
+$cor_verde = "\033[0;32m";
+$cor_amarela = "\033[0;33m";
+$cor_vermelha = "\033[0;31m";
+$cor_reset = "\033[0m";
+
 // Nome da variável de ambiente
 $envVarName = 'OPENAI_API_KEY';
 
 // Verifica se a variável de ambiente já está definida
 if (getenv($envVarName) === false) {
-    echo "A chave da API da OpenAI não está definida.\nVocê pode criar uma chave em https://platform.openai.com/api-keys.\nPor favor, insira a chave da API: ";
-    $handle = fopen ("php://stdin","r");
+    echo $cor_vermelha . "A chave da API da OpenAI não está definida.\nVocê pode criar uma chave em https://platform.openai.com/api-keys.\nPor favor, insira a chave da API: ". $cor_reset . PHP_EOL;
+    $handle = fopen("php://stdin", "r");
     $apiKey = trim(fgets($handle));
 
     if (!empty($apiKey)) {
@@ -25,9 +30,9 @@ if (getenv($envVarName) === false) {
             case 'zsh':
                 $shellConfigFile = $_SERVER['HOME'] . '/.zshrc';
                 break;
-            // Adicione mais casos conforme necessário para outros shells
+                // Adicione mais casos conforme necessário para outros shells
             default:
-                echo "Não foi possível determinar o arquivo de configuração do shell atual.";
+                echo $cor_vermelha . "Não foi possível determinar o arquivo de configuração do shell atual." . $cor_reset . PHP_EOL;
                 exit;
         }
 
@@ -35,19 +40,24 @@ if (getenv($envVarName) === false) {
         file_put_contents($shellConfigFile, "\nexport $envVarName=\"$apiKey\"\n", FILE_APPEND);
 
         // Informa ao usuário que a chave foi adicionada e instruções para recarregar o arquivo de configuração
-        echo "A chave da API foi adicionada ao seu $shellConfigFile. Por favor, reinicie o terminal ou execute o comando 'source $shellConfigFile' para aplicar as mudanças.\n";
+        echo $cor_vermelha . "A chave da API foi adicionada ao seu $shellConfigFile. Por favor, reinicie o terminal ou execute o comando 'source $shellConfigFile' para aplicar as mudanças." . $cor_reset . PHP_EOL;
         exit;
     } else {
-        echo "Chave da API inválida. Não é possível executar o comando.\n";
+        echo $cor_vermelha . "Chave da API inválida. Não é possível executar o comando." . $cor_reset . PHP_EOL;
+        ;
         exit;
     }
 }
 
 // Check if the user has provided a command line parameter
-if ($argc < 2) {
-    echo 'Por favor façca uma pergunta. Por exemplo `gpt "Qual a capital da Fraça"`';
-    exit(1);
+if($argc > 1) {
+    $prompt = $argv[1];
+} else {
+    // echo 'Por favor faça uma pergunta. Por exemplo `gpt "Qual a capital da Fraça"`';
+    echo $cor_verde . "Olá. Como posso ajudá-lo hoje?". $cor_reset . PHP_EOL;
+    $prompt = readline();
 }
+
 
 // Your OpenAI API key
 $apiKey = getenv($envVarName);
@@ -65,7 +75,7 @@ $data = [
     'messages' => [
         [
             'role' => 'user',
-            'content' => $argv[1],
+            'content' => $prompt,
         ]
     ],
     'temperature' => 0.7,
@@ -92,7 +102,7 @@ curl_close($ch);
 
 // Decode and display the response
 $responseData = json_decode($response, true);
-echo "=== \n";
+echo $cor_amarela . "=== Resposta:" . $cor_reset . PHP_EOL;
 if(isset($responseData['error'])) {
     echo "Erro: " . $responseData['error']['message'] . "\n";
     exit(1);
