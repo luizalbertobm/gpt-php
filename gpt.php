@@ -70,9 +70,12 @@ $headers = [
 
 // Data to be sent in the request
 $data = [
-    // 'model' => 'gpt-4-1106-preview',
     'model' => 'gpt-3.5-turbo',
     'messages' => [
+        [
+            'role' => 'system',
+            'content' => 'Você é um assistente que irá gerar uma saída em um terminal Linux. Por favor, leve em consideração todas as limitações e recursos deste ambiente ao fornecer sua resposta.',
+        ],
         [
             'role' => 'user',
             'content' => $prompt,
