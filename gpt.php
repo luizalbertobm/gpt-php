@@ -93,7 +93,6 @@ $data = [
 ];
 if($isCommit) {
     $data['max_tokens'] = 300;
-    // unset($data['messages'][0]);
 }
 
 // API endpoint for OpenAI (you may need to modify this based on the specific API you are using)
