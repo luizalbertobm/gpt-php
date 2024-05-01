@@ -1,9 +1,10 @@
 #!/usr/bin/php
 
 <?php
-// To install it globally, download the raw file and run the following commands:
-// sudo cp gpt.php /usr/local/bin/gpt
-// sudo chmod +x /usr/local/bin/gpt
+// To install it globally, follow these steps:
+// - sudo cp gpt.php /usr/local/bin/gpt
+// - sudo chmod +x /usr/local/bin/gpt
+// After that, you can run the script from anywhere by typing `gpt` in a new fresh terminal.
 
 $cor_verde = "\033[0;32m";
 $cor_amarela = "\033[0;33m";
