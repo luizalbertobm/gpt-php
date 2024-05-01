@@ -1,7 +1,7 @@
 #!/usr/bin/php
 
 <?php
-// sudo wget -O /usr/local/bin/script.sh https://gist.githubusercontent.com/luizalbertobm/f9331f25211732752e77e7065b72acca/raw/6d6769d2d8f6a0a1f4b447c0f45b0aff6780568c/
+// sudo wget -O [caminho do arquivo raw. Ex.: https://raw...] 
 // sudo chmod +x /usr/local/bin/*
 
 $cor_verde = "\033[0;32m";
@@ -92,7 +92,7 @@ $data = [
     'max_tokens' => 600  // Adjust the number of tokens as needed
 ];
 if($isCommit) {
-    $data['max_tokens'] = 200;
+    $data['max_tokens'] = 300;
     // unset($data['messages'][0]);
 }
 
