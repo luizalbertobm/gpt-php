@@ -125,10 +125,18 @@ if(isset($responseData['error'])) {
 foreach ($responseData['choices'] as $choice) {
     $response = $choice['message']['content'];
     echo $response  . "\n";
+
     if($isCommit) {
-        shell_exec("git add .");
-        shell_exec("git commit -m \"$response\"");
-        shell_exec("git push");
-    }    
+        // Solicita confirmação do usuário
+        echo "Deseja adicionar, commitar e fazer push dessa resposta? (yes/no): ";
+        $confirmacao = trim(fgets(STDIN));  // Lê a entrada do usuário
+
+        // Verifica se o usuário confirmou
+        if (strtolower($confirmacao) === 'yes') {
+            shell_exec("git add .");
+            shell_exec("git commit -m \"$response\"");
+            shell_exec("git push");
+        }
+    }
     exit(0);
 }
