@@ -4,6 +4,7 @@
 sudo rm /usr/local/bin/gpt
 
 # install the new version
+sudo apt install php
 sudo cp gpt.php /usr/local/bin/gpt
 sudo chmod +x /usr/local/bin/gpt
 

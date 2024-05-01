@@ -1,25 +1,26 @@
 #!/usr/bin/php
 
 <?php
-// sudo wget -O [caminho do arquivo raw. Ex.: https://raw...] 
-// sudo chmod +x /usr/local/bin/*
+// To install it globally, download the raw file and run the following commands:
+// sudo cp gpt.php /usr/local/bin/gpt
+// sudo chmod +x /usr/local/bin/gpt
 
 $cor_verde = "\033[0;32m";
 $cor_amarela = "\033[0;33m";
 $cor_vermelha = "\033[0;31m";
 $cor_reset = "\033[0m";
 
-// Nome da variável de ambiente
+// Variable name for the OpenAI API key
 $envVarName = 'OPENAI_API_KEY';
 
-// Verifica se a variável de ambiente já está definida
+// Check if the OpenAI API key is set as an environment variable
 if (getenv($envVarName) === false) {
     echo $cor_vermelha . "A chave da API da OpenAI não está definida.\nVocê pode criar uma chave em https://platform.openai.com/api-keys.\nPor favor, insira a chave da API: ". $cor_reset . PHP_EOL;
     $handle = fopen("php://stdin", "r");
     $apiKey = trim(fgets($handle));
 
     if (!empty($apiKey)) {
-        // Determina o arquivo de configuração do shell com base no shell atual
+        // Determine the shell configuration file based on the current shell
         $shellName = basename($_SERVER['SHELL']);
         $shellConfigFile = $_SERVER['HOME'] . '/.'.$shellName.'rc';
 
@@ -36,10 +37,10 @@ if (getenv($envVarName) === false) {
                 exit;
         }
 
-        // Adiciona a variável de ambiente ao arquivo de configuração
+        // Add the API key to the shell configuration file
         file_put_contents($shellConfigFile, "\nexport $envVarName=\"$apiKey\"\n", FILE_APPEND);
 
-        // Informa ao usuário que a chave foi adicionada e instruções para recarregar o arquivo de configuração
+        // Inform the user that the API key has been added and provide instructions to reload the configuration file
         echo $cor_vermelha . "A chave da API foi adicionada ao seu $shellConfigFile. Por favor, reinicie o terminal ou execute o comando 'source $shellConfigFile' para aplicar as mudanças." . $cor_reset . PHP_EOL;
         exit;
     } else {
@@ -50,10 +51,11 @@ if (getenv($envVarName) === false) {
 }
 
 $isCommit = false;
-// Check if the user has provided a command line parameter
+// Check if the script was called with an argument
 if($argc > 1) {
     echo $cor_verde . "Gerando mensagem..." . $cor_reset . PHP_EOL;
     $prompt = $argv[1];
+    // If the parameter is 'commit', the script will generate a commit message based on the git diff
     if($prompt == 'commit') {
         $isCommit = true;
         $diff = shell_exec('git diff');
@@ -125,10 +127,10 @@ foreach ($responseData['choices'] as $choice) {
     echo $response  . "\n";
 
     if($isCommit) {
-        echo "Deseja adicionar, commitar e fazer push dessa resposta? (yes/no): ";
+        echo "Deseja adicionar, commitar e fazer push com esta mensagem? (yes/no): ";
         $confirmacao = trim(fgets(STDIN));  // Lê a entrada do usuário
 
-        // Verifica se o usuário digitou "yes"
+        // Confirm the user's intention to add, commit, and push the response
         if (strtolower($confirmacao) === 'yes') {
             shell_exec("git add .");
             shell_exec("git commit -m \"$response\"");
