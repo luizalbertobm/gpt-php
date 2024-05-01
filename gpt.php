@@ -32,7 +32,6 @@ if (getenv($envVarName) === false) {
             case 'zsh':
                 $shellConfigFile = $_SERVER['HOME'] . '/.zshrc';
                 break;
-                // Adicione mais casos conforme necessário para outros shells
             default:
                 echo $cor_vermelha . "Não foi possível determinar o arquivo de configuração do shell atual." . $cor_reset . PHP_EOL;
                 exit;
