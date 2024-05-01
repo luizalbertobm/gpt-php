@@ -130,6 +130,7 @@ foreach ($responseData['choices'] as $choice) {
         echo "Deseja adicionar, commitar e fazer push dessa resposta? (yes/no): ";
         $confirmacao = trim(fgets(STDIN));  // Lê a entrada do usuário
 
+        // Verifica se o usuário digitou "yes"
         if (strtolower($confirmacao) === 'yes') {
             shell_exec("git add .");
             shell_exec("git commit -m \"$response\"");
