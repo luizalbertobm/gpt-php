@@ -11,7 +11,7 @@ php -v
 
 Você também pode instalar o PHP no linux usando 
 ```bash
-sudo apt instal php
+sudo apt instal php php php-curl
 ```
 
 ## Configuração
