@@ -57,10 +57,9 @@ if($argc > 1) {
     if($prompt == 'commit') {
         $isCommit = true;
         $diff = shell_exec('git diff');
-        $prompt = "Escreva apenas a mensagem de commit seguindo o padrao de commits semanticos (sem texto introdutório nem exemplo, diretamente a mensagem) para a seguinte saida do git diff: $diff";
+        $prompt = "Crie uma mensagem de commit seguindo os padrões de commits semânticos. Baseie-se na seguinte saída do 'git diff': $diff.\n A mensagem deve ser direta e clara, focada apenas nas alterações relevantes.";
     }
 } else {
-    // echo 'Por favor faça uma pergunta. Por exemplo `gpt "Qual a capital da Fraça"`';
     echo $cor_verde . "Olá. Como posso ajudá-lo hoje?". $cor_reset . PHP_EOL;
     $prompt = readline();
 }
@@ -92,7 +91,7 @@ $data = [
     'max_tokens' => 600  // Adjust the number of tokens as needed
 ];
 if($isCommit) {
-    $data['max_tokens'] = 300;
+    $data['max_tokens'] = 400;
 }
 
 // API endpoint for OpenAI (you may need to modify this based on the specific API you are using)
