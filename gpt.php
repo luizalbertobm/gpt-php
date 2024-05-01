@@ -49,9 +49,16 @@ if (getenv($envVarName) === false) {
     }
 }
 
+$isCommit = false;
 // Check if the user has provided a command line parameter
 if($argc > 1) {
+    echo $cor_verde . "Gerando mensagem..." . $cor_reset . PHP_EOL;
     $prompt = $argv[1];
+    if($prompt == 'commit') {
+        $isCommit = true;
+        $diff = shell_exec('git diff');
+        $prompt = "Escreva apenas a mensagem de commit seguindo o padrao de commits semanticos (sem texto introdutório nem exemplo, diretamente a mensagem) para a seguinte saida do git diff: $diff";
+    }
 } else {
     // echo 'Por favor faça uma pergunta. Por exemplo `gpt "Qual a capital da Fraça"`';
     echo $cor_verde . "Olá. Como posso ajudá-lo hoje?". $cor_reset . PHP_EOL;
@@ -84,6 +91,10 @@ $data = [
     'temperature' => 0.7,
     'max_tokens' => 600  // Adjust the number of tokens as needed
 ];
+if($isCommit) {
+    $data['max_tokens'] = 200;
+    // unset($data['messages'][0]);
+}
 
 // API endpoint for OpenAI (you may need to modify this based on the specific API you are using)
 $apiUrl = 'https://api.openai.com/v1/chat/completions';
@@ -112,6 +123,12 @@ if(isset($responseData['error'])) {
 }
 
 foreach ($responseData['choices'] as $choice) {
-    echo $choice['message']['content'] . "\n";
+    $response = $choice['message']['content'];
+    echo $response  . "\n";
+    if($isCommit) {
+        shell_exec("git add .");
+        shell_exec("git commit -m \"$response\"");
+        shell_exec("git push");
+    }    
     exit(0);
 }
