@@ -4,9 +4,8 @@
 sudo rm /usr/local/bin/gpt
 
 # install the new version
-sudo apt install php
+sudo chmod +x gpt.php
 sudo cp gpt.php /usr/local/bin/gpt
-sudo chmod +x /usr/local/bin/gpt
 
 # Check if the gpt file exists in the /usr/bin directory
 if [ -f /usr/local/bin/gpt ]; then

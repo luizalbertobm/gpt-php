@@ -1,15 +1,24 @@
 # OpenAI Console Chat
 
-Este repositório contém um único arquivo com um script PHP para interagir com a API da OpenAI e realizar conversas de texto. O script permite que você faça perguntas e receba respostas geradas pelo modelo de linguagem da OpenAI.
+Este repositório contém um script PHP para interagir com a API da OpenAI e realizar conversas de texto. O script permite que você faça perguntas e receba respostas geradas pelo modelo de linguagem da OpenAI.
+
+## Exemplos
+
+- Pergunta simples:
+
+![imagem exemplo](example.png)
+
+- Geração de commits semânticos para git:
+
+![imagem exemplo](commit.png)
 
 ## Pré-requisitos
 
-Antes de executar o script, você precisa ter o PHP 7.4 ou superior instalado em seu sistema. Você pode verificar se o PHP está instalado executando o seguinte comando no terminal:
-```bash
-php -v
-```
+Antes de executar o script, você precisa ter:
+- PHP 7.4 ou superior
+- A extensão do curl para o php
 
-Você também pode instalar o PHP no linux usando 
+Você pode instalar as duas usando o comando a seguir:
 ```bash
 sudo apt instal php php php-curl
 ```
@@ -21,7 +30,7 @@ O script verifica se a chave da API da OpenAI está definida como uma variável 
 
 O script é compatível com os shells `bash` e `zsh`. Ele determinará automaticamente o arquivo de configuração correto com base no shell atual do usuário.
 
-## Como usar
+## Como instalar
 
 Crie o link simbólico para o script no diretório `/usr/local/bin`:
 ```bash
