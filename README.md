@@ -1,6 +1,6 @@
 # OpenAI Console Chat
 
-Este repositório contém um script PHP para interagir com a API da OpenAI e realizar conversas de texto. O script permite que você faça perguntas e receba respostas geradas pelo modelo de linguagem da OpenAI.
+Este repositório contém um script PHP para integrar o terminal com a API da OpenAI. O script permite que você faça perguntas e receba respostas geradas pelo modelo de linguagem da OpenAI, além de gerar mensagens de commits semânticas.
 
 ## Exemplos
 
