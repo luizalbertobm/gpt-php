@@ -53,7 +53,6 @@ if (getenv($envVarName) === false) {
 $isCommit = false;
 // Check if the script was called with an argument
 if($argc > 1) {
-    echo $cor_verde . "Gerando mensagem..." . $cor_reset . PHP_EOL;
     $prompt = $argv[1];
     // If the parameter is 'commit', the script will generate a commit message based on the git diff
     if($prompt == 'commit') {
@@ -96,6 +95,7 @@ $data = [
 if($isCommit) {
     $data['max_tokens'] = 400;
 }
+echo $cor_verde . "Gerando mensagem..." . $cor_reset . PHP_EOL;
 
 // API endpoint for OpenAI (you may need to modify this based on the specific API you are using)
 $apiUrl = 'https://api.openai.com/v1/chat/completions';
