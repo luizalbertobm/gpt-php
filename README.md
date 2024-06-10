@@ -31,7 +31,6 @@ O script verifica se a chave da API da OpenAI está definida como uma variável 
 O script é compatível com os shells `bash` e `zsh`. Ele determinará automaticamente o arquivo de configuração correto com base no shell atual do usuário.
 
 ## Como instalar
-
 Crie o link simbólico para o script no diretório `/usr/local/bin`:
 ```bash
 sudo ln -s "$(pwd)/gpt.php" /usr/local/bin/gpt
