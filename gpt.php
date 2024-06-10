@@ -129,7 +129,9 @@ if(isset($responseData['error'])) {
 
 foreach ($responseData['choices'] as $choice) {
     $response = $choice['message']['content'];
-    echo $response  . "\n";
+    $response = str_replace('```', '', $response);
+
+    echo $response . PHP_EOL;
 
     if($isCommit) {
         echo "Do you want to add, commit, and push with this message? (Y/n):";
