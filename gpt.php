@@ -137,8 +137,9 @@ foreach ($responseData['choices'] as $choice) {
 
         // Confirm the user's intention to add, commit, and push the response
         if (strtolower($confirmacao) === 'y' || empty($confirmacao)) {
+            $escapedResponse = escapeshellarg($response);
             shell_exec("git add .");
-            shell_exec("git commit -m \"" . addslashes($response) . "\"");
+            shell_exec("git commit -m $escapedResponse");
             shell_exec("git push");
         }
     }
