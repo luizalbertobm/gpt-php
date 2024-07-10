@@ -15,8 +15,14 @@ Este repositório contém um script PHP para integrar o terminal com a API da Op
 ## Pré-requisitos
 
 Antes de executar o script, você precisa ter:
+
+**Para o script em PHP:**
 - PHP 7.4 ou superior
-- A extensão do curl para o php
+- A extensão do curl: `sudo apt install php-curl`
+
+**Para a versão em Python**
+- Pyton (para a versão em pyton)
+- instalar a lib Requests: `pip install requests`
 
 Você pode instalar as duas usando o comando a seguir:
 ```bash
@@ -33,8 +39,10 @@ O script é compatível com os shells `bash` e `zsh`. Ele determinará automatic
 ## Como instalar
 Crie o link simbólico para o script no diretório `/usr/local/bin`:
 ```bash
-sudo ln -s "$(pwd)/gpt.php" /usr/local/bin/gpt
+sudo ln -s "$(pwd)/gpt.{extension}" /usr/local/bin/gpt
 ```
+> Replace `{extemsion}` by the one that you wants to use: `php`or `py`
+
 
 Em seguida, torne o script executável e atualize o shell para reconhecer o novo comando:
 ```bash
