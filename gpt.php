@@ -135,7 +135,7 @@ foreach ($responseData['choices'] as $choice) {
     echo $response . PHP_EOL;
 
     if($isCommit) {
-        echo "Do you want to add, commit, and push with this message? (Y/n):";
+        echo $cor_amarela . "Do you want to add, commit, and push with this message? (Y/n):" . $cor_reset;
         $confirmacao = trim(fgets(STDIN));  // Lê a entrada do usuário
 
         // Confirm the user's intention to add, commit, and push the response
