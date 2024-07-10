@@ -26,26 +26,20 @@ Before running the script, you need to have:
 - Requests library: `pip install requests`
 
 
-
-## Configuration
+## Getting Started
 To run the script, you also need an OpenAI API key. If you don't have an API key yet, you can create one at [https://platform.openai.com/api-keys](https://platform.openai.com/api-keys).
 
 The script checks if the OpenAI API key is set as an environment variable. If not, it will prompt you to enter the API key and add it to the shell configuration file for persistence.
 
 The script is compatible with `bash` and `zsh` shells. It will automatically determine the correct configuration file based on the user's current shell.
 
-## How to install
-Create a symbolic link for the script in the `/usr/local/bin` directory:
+### Installation
+Run the install script:
 ```bash
-sudo ln -s "$(pwd)/gpt.{extension}" /usr/local/bin/gpt
+./install.sh
 ```
-> Replace `{extension}` with the one you want to use: `php` or `py`
 
-Then, make the script executable and update the shell to recognize the new command:
-```bash
-sudo chmod +x gpt.php
-source ~/.bashrc
-```
+Then, update the shell to recognize the new command or open a new terminal.
 
 Now you can run the script globally in the terminal by typing `gpt` and passing the necessary arguments.
 ```bash
