@@ -87,8 +87,8 @@ def interact_with_openai(api_key, prompt, is_commit=False):
             confirm = input(f"{COR_AMARELA}Do you want to add, commit, and push using this message? (Y/n): {COR_RESET}").strip().lower()
             if confirm == 'y' or confirm == '':
                 subprocess.run("git add .", shell=True)
-                commit_message = response_text.replace('\n', '\\n').replace('"', '\\"')
-                subprocess.run(f'git commit -m "{commit_message}"', shell=True)
+                commit_message = response_text
+                subprocess.run(['git', 'commit', '-m', commit_message], shell=False)
                 subprocess.run("git push", shell=True)
         sys.exit(0)
 
