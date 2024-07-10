@@ -58,11 +58,11 @@ if($argc > 1) {
     if($prompt == 'commit') {
         $isCommit = true;
         $diff = shell_exec('git diff');
-        $prompt = "Write a concise semantic git commit message. 
-                    - The first line must starts with a 60-characters summaring the key changes.
+        $prompt = "Write a concise semantic git commit message. Use the following format:
+                    - The first line must starts with a 60-characters summaring the key changes. Try to use the conventional commits format
                     - The second line must be a blank line
                     - The third line onwards should provide longer but concise description of the changes
-                    The `git diff` output for the commit message is the following\n: $diff";
+                    The output of git diff that should be used as a reference for the commit message is as follows:\n: $diff";
     }
 } else {
     echo $cor_verde . "Hi. How can I help you?". $cor_reset . PHP_EOL;
